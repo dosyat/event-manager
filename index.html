@@ -460,6 +460,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             overflow: hidden;
             position: relative;
+            transition: all 0.5s ease;
         }
         .animation-card .anim-title {
             font-size: 0.55rem;
@@ -490,6 +491,7 @@
             font-size: 1.2rem;
             margin-bottom: 2px;
             display: block;
+            transition: all 0.5s ease;
         }
         .anim-item .anim-number {
             font-size: 1.4rem;
@@ -538,7 +540,7 @@
         }
         @keyframes pulseNumber {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.15); }
         }
         .anim-number.pulse {
             animation: pulseNumber 0.6s ease;
@@ -546,30 +548,146 @@
         .anim-item.glow {
             box-shadow: 0 0 20px rgba(42, 95, 138, 0.08);
         }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+
+        /* ===== AUTO GLOW ANIMATION EVERY 5 SECONDS ===== */
+        @keyframes autoGlowPulse {
+            0% { 
+                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
+                border-color: #e8ecf0;
+            }
+            25% { 
+                box-shadow: 0 0 50px rgba(42, 95, 138, 0.35), 0 0 100px rgba(42, 95, 138, 0.15), 0 0 150px rgba(42, 95, 138, 0.08);
+                border-color: rgba(42, 95, 138, 0.6);
+                transform: scale(1.02);
+            }
+            50% { 
+                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
+                border-color: #e8ecf0;
+                transform: scale(1);
+            }
+            75% { 
+                box-shadow: 0 0 50px rgba(42, 95, 138, 0.35), 0 0 100px rgba(42, 95, 138, 0.15), 0 0 150px rgba(42, 95, 138, 0.08);
+                border-color: rgba(42, 95, 138, 0.6);
+                transform: scale(1.02);
+            }
+            100% { 
+                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
+                border-color: #e8ecf0;
+                transform: scale(1);
+            }
         }
-        .animation-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255,255,255,0.1) 30%, 
-                rgba(255,255,255,0.3) 50%, 
-                rgba(255,255,255,0.1) 70%, 
-                transparent 100%
-            );
-            background-size: 200% 100%;
-            animation: shimmer 4s infinite;
-            pointer-events: none;
-            border-radius: 14px;
+
+        @keyframes autoGlowCompleted {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
+                background: rgba(255,255,255,0.6);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(46, 204, 113, 0.5), 0 0 120px rgba(46, 204, 113, 0.2);
+                background: rgba(46, 204, 113, 0.15);
+            }
         }
-        
+
+        @keyframes autoGlowPending {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
+                background: rgba(255,255,255,0.6);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(243, 156, 18, 0.5), 0 0 120px rgba(243, 156, 18, 0.2);
+                background: rgba(243, 156, 18, 0.15);
+            }
+        }
+
+        @keyframes autoGlowCancelled {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
+                background: rgba(255,255,255,0.6);
+            }
+            50% { 
+                box-shadow: 0 0 60px rgba(231, 76, 60, 0.5), 0 0 120px rgba(231, 76, 60, 0.2);
+                background: rgba(231, 76, 60, 0.15);
+            }
+        }
+
+        .animation-card.auto-glow {
+            animation: autoGlowPulse 5s ease-in-out infinite;
+        }
+
+        .animation-card .anim-item.completed.auto-glow {
+            animation: autoGlowCompleted 5s ease-in-out infinite;
+        }
+
+        .animation-card .anim-item.pending.auto-glow {
+            animation: autoGlowPending 5s ease-in-out infinite;
+        }
+
+        .animation-card .anim-item.cancelled.auto-glow {
+            animation: autoGlowCancelled 5s ease-in-out infinite;
+        }
+
+        /* Shimmer effect every 5 seconds */
+        .animation-card.auto-glow::after {
+            animation: autoShimmer 5s ease-in-out infinite;
+        }
+
+        @keyframes autoShimmer {
+            0%, 100% { 
+                opacity: 0;
+                transform: rotate(0deg) scale(0.8);
+            }
+            25% { 
+                opacity: 0.8;
+                transform: rotate(180deg) scale(1.3);
+            }
+            50% { 
+                opacity: 0;
+                transform: rotate(360deg) scale(0.8);
+            }
+            75% { 
+                opacity: 0.8;
+                transform: rotate(180deg) scale(1.3);
+            }
+            100% { 
+                opacity: 0;
+                transform: rotate(0deg) scale(0.8);
+            }
+        }
+
+        /* Number glow every 5 seconds */
+        .anim-item.auto-glow .anim-number {
+            animation: autoNumberGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes autoNumberGlow {
+            0%, 100% { 
+                text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+            }
+            50% { 
+                text-shadow: 0 0 40px currentColor, 0 0 80px currentColor, 0 0 120px currentColor;
+            }
+        }
+
+        /* Icon pulse every 5 seconds */
+        .anim-item.auto-glow .anim-icon {
+            animation: autoIconPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes autoIconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.5); filter: drop-shadow(0 0 30px currentColor); }
+        }
+
+        /* Progress bar pulse every 5 seconds */
+        .anim-item.auto-glow .anim-progress-bar {
+            animation: autoProgressPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes autoProgressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
         /* ===== MAP CARD ===== */
         .map-card {
             background: #f8fafc;
@@ -964,7 +1082,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.65rem;
-            min-width: 1200px;
+            min-width: 1300px;
         }
         .table-wrap thead {
             position: sticky;
@@ -1936,7 +2054,7 @@
                                         <input type="file" id="importFileInput" accept=".json,.xlsx,.xls">
                                     </div>
                                     
-                                    <!-- Export Dropdown - moved closer to Import -->
+                                    <!-- Export Dropdown -->
                                     <div class="export-dropdown" id="exportDropdown">
                                         <button type="button" class="btn-export" id="exportBtn"><i class="fas fa-file-export"></i> <span id="btnExport">Export</span> <i class="fas fa-chevron-down" style="font-size:0.5rem;margin-left:2px;"></i></button>
                                         <div class="export-dropdown-content">
@@ -2235,22 +2353,20 @@
 
     <script>
         // ============================================================
-        //  FIREBASE CONFIGURATION - CHANGE THIS!
+        //  FIREBASE CONFIGURATION
         // ============================================================
         const firebaseConfig = {
             apiKey: "AIzaSyCyq9G5unSpqD7E-Gmm1hd978BmXOcXAMo",
-  authDomain: "my-event-app-2b6a4.firebaseapp.com",
-  projectId: "my-event-app-2b6a4",
-  storageBucket: "my-event-app-2b6a4.firebasestorage.app",
-  messagingSenderId: "431538300433",
-  appId: "1:431538300433:web:7a29f397ff0b37b5e1b3b0"
+            authDomain: "my-event-app-2b6a4.firebaseapp.com",
+            projectId: "my-event-app-2b6a4",
+            storageBucket: "my-event-app-2b6a4.firebasestorage.app",
+            messagingSenderId: "431538300433",
+            appId: "1:431538300433:web:7a29f397ff0b37b5e1b3b0"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Enable offline persistence
         db.enablePersistence({ synchronizeTabs: true })
             .catch(err => console.warn('Firebase persistence error:', err));
 
@@ -3288,13 +3404,11 @@
                 try {
                     const batch = db.batch();
                     
-                    // Get all existing documents
                     const snapshot = await db.collection('events').get();
                     snapshot.forEach(doc => {
                         batch.delete(doc.ref);
                     });
                     
-                    // Add all events
                     events.forEach(ev => {
                         const docRef = db.collection('events').doc(String(ev.id));
                         batch.set(docRef, {
@@ -3355,7 +3469,7 @@
             }
 
             // ============================================================
-            //  ANIMATION UPDATE
+            //  ANIMATION UPDATE WITH AUTO GLOW EVERY 5 SECONDS
             // ============================================================
             function updateAnimation() {
                 const dataToShow = isFiltered ? filteredData : eventsData;
@@ -3385,13 +3499,36 @@
                 pendingBar.style.width = `${(pending / total) * 100}%`;
                 cancelledBar.style.width = `${(cancelled / total) * 100}%`;
 
+                // ===== AUTO GLOW EVERY 5 SECONDS =====
+                const animCard = document.getElementById('animationCard');
+                const animItems = document.querySelectorAll('.anim-item');
+                
+                // Remove old glow classes
+                animCard.classList.remove('auto-glow');
+                animItems.forEach(item => {
+                    item.classList.remove('auto-glow');
+                });
+                
+                // Force reflow
+                void animCard.offsetWidth;
+                
+                // Add auto-glow classes (will run continuously every 5 seconds)
+                animCard.classList.add('auto-glow');
+                animItems.forEach((item, index) => {
+                    // Stagger the start times for each item
+                    setTimeout(() => {
+                        item.classList.add('auto-glow');
+                    }, index * 300);
+                });
+
+                // Number pulse animation (instant effect)
                 setTimeout(() => {
                     document.querySelectorAll('.anim-number').forEach(el => {
                         el.classList.add('pulse');
                     });
                 }, 100);
 
-                const animItems = document.querySelectorAll('.anim-item');
+                // Item glow effect
                 animItems.forEach(item => {
                     item.classList.remove('glow');
                     void item.offsetWidth;
@@ -4245,7 +4382,6 @@
                 } catch (e) { showMessage('error', LANG[currentLang].msgTitle, e.message); }
             }
 
-            // ===== PDF EXPORT WITH KHMER FONT SUPPORT =====
             function exportToPDF() {
                 const dataToExport = isFiltered ? filteredData : eventsData;
                 if (dataToExport.length === 0) {
@@ -4257,13 +4393,11 @@
                     const { jsPDF } = window.jspdf;
                     const doc = new jsPDF('landscape', 'mm', 'a4');
                     
-                    // Add title
                     doc.setFontSize(14);
                     doc.text('Event Report', 14, 15);
                     doc.setFontSize(10);
                     doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 22);
                     
-                    // Prepare table data
                     const headers = ['No.', 'Date', 'Location', 'Contact', 'Start', 'End', 'Distance', 'Total', 'Deposit', 'Balance', 'Status'];
                     const rows = dataToExport.map((ev, idx) => [
                         idx + 1,
@@ -4279,7 +4413,6 @@
                         getStatusLabel(ev.status || 'pending')
                     ]);
                     
-                    // Use autoTable with custom styles
                     doc.autoTable({
                         head: [headers],
                         body: rows,
@@ -4314,7 +4447,6 @@
                         margin: { left: 10, right: 10 },
                         tableWidth: 'auto',
                         didDrawPage: function(data) {
-                            // Footer
                             doc.setFontSize(8);
                             doc.text(`Total: ${dataToExport.length} events`, 14, doc.internal.pageSize.height - 5);
                         }
@@ -4328,7 +4460,6 @@
                 }
             }
 
-            // ===== IMAGE EXPORT =====
             function exportToImage() {
                 const dataToExport = isFiltered ? filteredData : eventsData;
                 if (dataToExport.length === 0) {
@@ -4339,7 +4470,6 @@
                 try {
                     const tableWrap = document.getElementById('tableWrap');
                     
-                    // Temporarily remove max-height for full capture
                     const originalMaxHeight = tableWrap.style.maxHeight;
                     const originalOverflow = tableWrap.style.overflow;
                     tableWrap.style.maxHeight = 'none';
@@ -4356,7 +4486,6 @@
                         windowWidth: tableWrap.scrollWidth,
                         windowHeight: tableWrap.scrollHeight,
                     }).then(canvas => {
-                        // Restore original styles
                         tableWrap.style.maxHeight = originalMaxHeight || '420px';
                         tableWrap.style.overflow = originalOverflow || 'auto';
                         
@@ -4368,7 +4497,6 @@
                         document.body.removeChild(link);
                         showMessage('success', LANG[currentLang].msgTitle, LANG[currentLang].msgText);
                     }).catch(err => {
-                        // Restore original styles
                         tableWrap.style.maxHeight = originalMaxHeight || '420px';
                         tableWrap.style.overflow = originalOverflow || 'auto';
                         console.error('Image Export Error:', err);
@@ -4508,20 +4636,73 @@
                 clearAllFormFields();
 
                 if (!hasData || eventsData.length === 0) {
-                    // Add default sample data
                     eventsData = [
-                        { id: nextId++, date: '2026-07-23', location: 'ភ្នំពេញ', locationLink: 'https://maps.google.com/?q=Phnom+Penh', contact: '012 345 678', startTime: '08:00',
-                            endTime: '17:00', distance: 5, bonus: 20, gasoline: 15, cattleWeight: 120, programFee: 250,
-                            deposit: 50, remaining: 200, extraKg: 0, numTables: 5, numChairs: 20,
-                            status: 'completed', menuItems: ['មាន់ស្ពៃខៀវ', 'រោង', 'ជ្រក់ជើងមាន', 'Sound'], enteredBy: 'admin' },
-                        { id: nextId++, date: '2026-07-23', location: 'ភ្នំពេញ', locationLink: '', contact: '011 222 333', startTime: '18:00',
-                            endTime: '22:00', distance: 8, bonus: 25, gasoline: 10, cattleWeight: 80, programFee: 180,
-                            deposit: 40, remaining: 140, extraKg: 0, numTables: 3, numChairs: 12,
-                            status: 'pending', menuItems: ['ជ្រក់ជើងមាន', 'ស្បែកជ្រួកបំពង'], enteredBy: 'user1' },
-                        { id: nextId++, date: '2026-07-25', location: 'សៀមរាប', locationLink: 'https://maps.google.com/?q=Siem+Reap', contact: '098 765 432', startTime: '10:00',
-                            endTime: '15:00', distance: 12, bonus: 30, gasoline: 20, cattleWeight: 150, programFee: 350,
-                            deposit: 80, remaining: 270, extraKg: 2.5, numTables: 8, numChairs: 32,
-                            status: 'cancelled', menuItems: ['ពោះគោទឹកប្រហុក', 'សម្លរម្ចូរក្រាក់', 'រោង', 'Sound'], enteredBy: 'admin' }
+                        { 
+                            id: nextId++, 
+                            date: '2026-07-23', 
+                            location: 'ភ្នំពេញ', 
+                            locationLink: 'https://maps.google.com/?q=Phnom+Penh', 
+                            contact: '012 345 678', 
+                            startTime: '08:00',
+                            endTime: '17:00', 
+                            distance: 5, 
+                            bonus: 20, 
+                            gasoline: 15, 
+                            cattleWeight: 120, 
+                            programFee: 250,
+                            deposit: 50, 
+                            remaining: 200, 
+                            extraKg: 0, 
+                            numTables: 5, 
+                            numChairs: 20,
+                            status: 'completed', 
+                            menuItems: ['មាន់ស្ពៃខៀវ', 'រោង', 'ជ្រក់ជើងមាន', 'Sound'], 
+                            enteredBy: 'admin' 
+                        },
+                        { 
+                            id: nextId++, 
+                            date: '2026-07-23', 
+                            location: 'ភ្នំពេញ', 
+                            locationLink: '', 
+                            contact: '011 222 333', 
+                            startTime: '18:00',
+                            endTime: '22:00', 
+                            distance: 8, 
+                            bonus: 25, 
+                            gasoline: 10, 
+                            cattleWeight: 80, 
+                            programFee: 180,
+                            deposit: 40, 
+                            remaining: 140, 
+                            extraKg: 0, 
+                            numTables: 3, 
+                            numChairs: 12,
+                            status: 'pending', 
+                            menuItems: ['ជ្រក់ជើងមាន', 'ស្បែកជ្រួកបំពង'], 
+                            enteredBy: 'user1' 
+                        },
+                        { 
+                            id: nextId++, 
+                            date: '2026-07-25', 
+                            location: 'សៀមរាប', 
+                            locationLink: 'https://maps.google.com/?q=Siem+Reap', 
+                            contact: '098 765 432', 
+                            startTime: '10:00',
+                            endTime: '15:00', 
+                            distance: 12, 
+                            bonus: 30, 
+                            gasoline: 20, 
+                            cattleWeight: 150, 
+                            programFee: 350,
+                            deposit: 80, 
+                            remaining: 270, 
+                            extraKg: 2.5, 
+                            numTables: 8, 
+                            numChairs: 32,
+                            status: 'cancelled', 
+                            menuItems: ['ពោះគោទឹកប្រហុក', 'សម្លរម្ចូរក្រាក់', 'រោង', 'Sound'], 
+                            enteredBy: 'admin' 
+                        }
                     ];
                     sortDataByDate(eventsData);
                     await saveToFirestore(eventsData);
@@ -4627,7 +4808,6 @@
                 if (e.target === this) closeEditModal();
             });
 
-            // Import
             importFileInput.addEventListener('change', function(e) {
                 if (this.files && this.files.length > 0) {
                     handleImport(this.files[0]);
