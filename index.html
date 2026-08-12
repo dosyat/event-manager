@@ -549,145 +549,22 @@
             box-shadow: 0 0 20px rgba(42, 95, 138, 0.08);
         }
 
-        /* ===== AUTO GLOW ANIMATION EVERY 5 SECONDS ===== */
+        /* ===== AUTO GLOW ANIMATION ===== */
         @keyframes autoGlowPulse {
-            0% { 
-                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1);
                 border-color: #e8ecf0;
             }
-            25% { 
-                box-shadow: 0 0 50px rgba(42, 95, 138, 0.35), 0 0 100px rgba(42, 95, 138, 0.15), 0 0 150px rgba(42, 95, 138, 0.08);
+            50% { 
+                box-shadow: 0 0 50px rgba(42, 95, 138, 0.35);
                 border-color: rgba(42, 95, 138, 0.6);
                 transform: scale(1.02);
             }
-            50% { 
-                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
-                border-color: #e8ecf0;
-                transform: scale(1);
-            }
-            75% { 
-                box-shadow: 0 0 50px rgba(42, 95, 138, 0.35), 0 0 100px rgba(42, 95, 138, 0.15), 0 0 150px rgba(42, 95, 138, 0.08);
-                border-color: rgba(42, 95, 138, 0.6);
-                transform: scale(1.02);
-            }
-            100% { 
-                box-shadow: 0 0 20px rgba(42, 95, 138, 0.1), 0 0 40px rgba(42, 95, 138, 0.05);
-                border-color: #e8ecf0;
-                transform: scale(1);
-            }
         }
-
-        @keyframes autoGlowCompleted {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
-                background: rgba(255,255,255,0.6);
-            }
-            50% { 
-                box-shadow: 0 0 60px rgba(46, 204, 113, 0.5), 0 0 120px rgba(46, 204, 113, 0.2);
-                background: rgba(46, 204, 113, 0.15);
-            }
-        }
-
-        @keyframes autoGlowPending {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(243, 156, 18, 0.2);
-                background: rgba(255,255,255,0.6);
-            }
-            50% { 
-                box-shadow: 0 0 60px rgba(243, 156, 18, 0.5), 0 0 120px rgba(243, 156, 18, 0.2);
-                background: rgba(243, 156, 18, 0.15);
-            }
-        }
-
-        @keyframes autoGlowCancelled {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
-                background: rgba(255,255,255,0.6);
-            }
-            50% { 
-                box-shadow: 0 0 60px rgba(231, 76, 60, 0.5), 0 0 120px rgba(231, 76, 60, 0.2);
-                background: rgba(231, 76, 60, 0.15);
-            }
-        }
-
         .animation-card.auto-glow {
             animation: autoGlowPulse 5s ease-in-out infinite;
         }
-
-        .animation-card .anim-item.completed.auto-glow {
-            animation: autoGlowCompleted 5s ease-in-out infinite;
-        }
-
-        .animation-card .anim-item.pending.auto-glow {
-            animation: autoGlowPending 5s ease-in-out infinite;
-        }
-
-        .animation-card .anim-item.cancelled.auto-glow {
-            animation: autoGlowCancelled 5s ease-in-out infinite;
-        }
-
-        /* Shimmer effect every 5 seconds */
-        .animation-card.auto-glow::after {
-            animation: autoShimmer 5s ease-in-out infinite;
-        }
-
-        @keyframes autoShimmer {
-            0%, 100% { 
-                opacity: 0;
-                transform: rotate(0deg) scale(0.8);
-            }
-            25% { 
-                opacity: 0.8;
-                transform: rotate(180deg) scale(1.3);
-            }
-            50% { 
-                opacity: 0;
-                transform: rotate(360deg) scale(0.8);
-            }
-            75% { 
-                opacity: 0.8;
-                transform: rotate(180deg) scale(1.3);
-            }
-            100% { 
-                opacity: 0;
-                transform: rotate(0deg) scale(0.8);
-            }
-        }
-
-        /* Number glow every 5 seconds */
-        .anim-item.auto-glow .anim-number {
-            animation: autoNumberGlow 5s ease-in-out infinite;
-        }
-
-        @keyframes autoNumberGlow {
-            0%, 100% { 
-                text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
-            }
-            50% { 
-                text-shadow: 0 0 40px currentColor, 0 0 80px currentColor, 0 0 120px currentColor;
-            }
-        }
-
-        /* Icon pulse every 5 seconds */
-        .anim-item.auto-glow .anim-icon {
-            animation: autoIconPulse 5s ease-in-out infinite;
-        }
-
-        @keyframes autoIconPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.5); filter: drop-shadow(0 0 30px currentColor); }
-        }
-
-        /* Progress bar pulse every 5 seconds */
-        .anim-item.auto-glow .anim-progress-bar {
-            animation: autoProgressPulse 5s ease-in-out infinite;
-        }
-
-        @keyframes autoProgressPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
+        
         /* ===== MAP CARD ===== */
         .map-card {
             background: #f8fafc;
@@ -862,8 +739,6 @@
         /* ===== ADMIN ONLY ===== */
         .admin-only { display: none !important; }
         .admin-only.show { display: inline-flex !important; }
-        
-        /* ===== HIDE ENTERED BY COLUMN FOR NON-ADMIN ===== */
         .entered-by-col { display: table-cell; }
         .entered-by-col.hidden-for-user { display: none !important; }
         
@@ -876,7 +751,8 @@
             justify-content: center;
             align-items: center;
         }
-        .btn-save, .btn-telegram, .btn-delete, .btn-print, .btn-export, .btn-edit-data, .btn-user-manage, .btn-import, .btn-export-json, .btn-settings {
+        .btn-save, .btn-telegram, .btn-delete, .btn-print, .btn-export, 
+        .btn-edit-data, .btn-user-manage, .btn-import, .btn-export-json, .btn-settings {
             border: none;
             color: white;
             font-weight: 600;
@@ -893,9 +769,6 @@
             height: 30px;
             min-width: 70px;
             flex: 0 1 auto;
-        }
-        .btn-save i, .btn-telegram i, .btn-delete i, .btn-print i, .btn-export i, .btn-edit-data i, .btn-user-manage i, .btn-import i, .btn-export-json i, .btn-settings i {
-            font-size: 0.65rem;
         }
         .btn-save { background: #27ae60; }
         .btn-save:hover { background: #2ecc71; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(39,174,96,0.3); }
@@ -917,22 +790,6 @@
         .btn-export-json:hover { background: #27ae60; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(46,204,113,0.3); }
         .btn-settings { background: #6c5ce7 !important; }
         .btn-settings:hover { background: #7c6df0 !important; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(108,92,231,0.3); }
-        
-        .btn-save:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
-        
-        .btn-group .btn-delete:disabled,
-        .btn-group .btn-edit-data:disabled,
-        .btn-group .btn-user-manage:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-            box-shadow: none !important;
-        }
         
         /* ===== IMPORT FILE INPUT ===== */
         .file-input-wrapper {
@@ -1120,11 +977,6 @@
             border-left: 3px solid #e74c3c;
             opacity: 0.85;
         }
-        .table-wrap tbody tr.cancelled-row td .status-badge.status-cancelled {
-            background: #fde2e2;
-            color: #c0392b;
-            border: 1px solid #e74c3c;
-        }
         .table-wrap::-webkit-scrollbar { width: 6px; height: 6px; }
         .table-wrap::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px; }
         .table-wrap::-webkit-scrollbar-thumb { background: #c1c7cd; border-radius: 8px; }
@@ -1157,9 +1009,8 @@
         .status-completed { background: #d4edda; color: #155724; }
         .status-pending { background: #fff3cd; color: #856404; }
         .status-cancelled { background: #fde2e2; color: #c0392b; border: 1px solid #e74c3c; }
-        .status-unauthorized { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         
-        /* ===== ACTION BUTTONS - SMALLER ICONS ===== */
+        /* ===== ACTION BUTTONS ===== */
         .action-btn {
             background: transparent;
             border: none;
@@ -1176,9 +1027,7 @@
             min-width: 22px;
             min-height: 22px;
         }
-        .action-btn i {
-            font-size: 0.65rem;
-        }
+        .action-btn i { font-size: 0.65rem; }
         .action-btn.edit-btn { color: #27ae60; }
         .action-btn.edit-btn:hover { background: #e8f8f0; transform: scale(1.08); }
         .action-btn.delete-btn { color: #e74c3c; }
@@ -1198,9 +1047,7 @@
             align-items: center;
             gap: 2px;
         }
-        .action-btn.active-tab i {
-            font-size: 0.5rem;
-        }
+        .action-btn.active-tab i { font-size: 0.5rem; }
         
         /* ===== SCROLL INFO ===== */
         .scroll-info {
@@ -1650,8 +1497,6 @@
             border-bottom: 2px solid #e8ecf0;
             padding-bottom: 10px;
         }
-        
-        /* Settings Tabs */
         .settings-tabs {
             display: flex;
             flex-wrap: wrap;
@@ -1684,8 +1529,6 @@
             box-shadow: 0 4px 12px rgba(26,58,92,0.2);
         }
         .settings-tab i { font-size: 0.7rem; }
-        
-        /* Settings Panels */
         .settings-panel {
             display: none;
             padding: 4px 0 12px;
@@ -1729,7 +1572,6 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(42,95,138,0.08);
         }
-        
         .btn-save-small {
             background: #27ae60;
             border: none;
@@ -1777,7 +1619,6 @@
             background: #e67e22;
             transform: translateY(-2px);
         }
-        
         .settings-actions {
             display: flex;
             gap: 10px;
@@ -1988,12 +1829,7 @@
         }
         @media (max-width: 820px) {
             .main-layout { flex-direction: column; }
-            .right-panel {
-                flex: 1;
-                min-width: unset;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
+            .right-panel { flex: 1; min-width: unset; flex-direction: row; flex-wrap: wrap; }
             .dashboard-stats { flex-direction: row; flex-wrap: wrap; flex: 1; }
             .stat-item { flex: 1; min-width: 80px; }
             .animation-card { flex: 1; min-width: 160px; }
@@ -2400,7 +2236,7 @@
         <!-- Footer -->
         <div class="app-footer">
             <span class="creator"><i class="fas fa-code"></i> បង្កើតដោយ <i class="fas fa-heart"></i> យ៉ាត ដុះសម្បត្តិ</span>
-            <span class="version">v2.5 · Pro</span>
+            <span class="version">v3.0 · Pro</span>
         </div>
     </div>
     
@@ -2710,13 +2546,13 @@
             .catch(err => console.warn('Firebase persistence error:', err));
 
         // ============================================================
-        //  COMPLETE JAVASCRIPT - Event Manager Pro v2.5 FIRESTORE
+        //  COMPLETE JAVASCRIPT - Event Manager Pro v3.0
         // ============================================================
         (function() {
             'use strict';
 
             // ============================================================
-            //  USER MANAGEMENT SYSTEM
+            //  USER MANAGEMENT SYSTEM (LocalStorage)
             // ============================================================
             const USERS_KEY = 'eventManagerUsers';
             const SESSION_KEY = 'eventManagerSession';
@@ -3291,7 +3127,6 @@
             //  CONSTANTS
             // ============================================================
             const MENU_ITEMS = ['ជ្រក់ជើងមាន', 'មាន់ស្ពៃខៀវ', 'ស្បែកជ្រួកបំពង', 'សម្លរម្ចូរក្រាក់', 'ពោះគោទឹកប្រហុក', 'រោង', 'Sound', 'ត្រីដុតអំបិល'];
-            const STORAGE_KEY = 'eventManagerData';
 
             // ============================================================
             //  STATE
@@ -3794,6 +3629,169 @@
             }
 
             // ============================================================
+            //  SYSTEM SETTINGS WITH FIRESTORE SYNC - FIXED
+            // ============================================================
+            const SETTINGS_KEY = 'eventSystemSettings';
+            const SETTINGS_COLLECTION = 'system_settings';
+            const SETTINGS_DOC_ID = 'app_settings';
+
+            const DEFAULT_SETTINGS = {
+                companyName: 'ហេង ធារ៉ាគោដុត',
+                phone: '012 345 678',
+                address: 'ភ្នំពេញ, កម្ពុជា',
+                email: 'info@example.com',
+                logo: '',
+                runningTitle: 'ហេង ធារ៉ាគោដុត មានទទួលរៀបចំកម្មវិធីផ្សែងៗដូចជាៈ ១-ខួបកំណើត  ២-ឡើងគេហដ្ឋានថ្មី ៣-កាត់ចំណងចំណងដៃ ៤-និងកម្មវិធីជួបជុំផ្សេង!',
+                primaryColor: '#1a3a5c',
+                secondaryColor: '#2a5f8a',
+                bgColor: '#f0f2f5',
+                defaultLang: 'km',
+                menuItems: ['ជ្រក់ជើងមាន', 'មាន់ស្ពៃខៀវ', 'ស្បែកជ្រួកបំពង', 'សម្លរម្ចូរក្រាក់', 'ពោះគោទឹកប្រហុក', 'រោង', 'Sound', 'ត្រីដុតអំបិល'],
+                eventTypes: ['ខួបកំណើត', 'ឡើងគេហដ្ឋានថ្មី', 'កាត់ចំណងចំណងដៃ', 'ជួបជុំគ្រួសារ'],
+                bonusRate: 10,
+                extraPrice: 10,
+                gasRate: 2,
+                discountRate: 0
+            };
+
+            async function getSettings() {
+                try {
+                    const docRef = db.collection(SETTINGS_COLLECTION).doc(SETTINGS_DOC_ID);
+                    const doc = await docRef.get();
+                    
+                    if (doc.exists) {
+                        const settings = doc.data();
+                        localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+                        return settings;
+                    } else {
+                        console.log('Settings not found in Firestore, creating default...');
+                        await saveSettings(DEFAULT_SETTINGS);
+                        return { ...DEFAULT_SETTINGS };
+                    }
+                } catch (error) {
+                    console.error('Error loading settings from Firestore:', error);
+                    const cached = localStorage.getItem(SETTINGS_KEY);
+                    if (cached) {
+                        try {
+                            const settings = JSON.parse(cached);
+                            return { ...DEFAULT_SETTINGS, ...settings };
+                        } catch (e) {}
+                    }
+                    return { ...DEFAULT_SETTINGS };
+                }
+            }
+
+            async function saveSettings(settings) {
+                try {
+                    const docRef = db.collection(SETTINGS_COLLECTION).doc(SETTINGS_DOC_ID);
+                    await docRef.set({
+                        ...settings,
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        updatedBy: getUsername() || 'admin'
+                    }, { merge: true });
+                    
+                    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+                    console.log('Settings saved to Firestore successfully!');
+                    return true;
+                } catch (error) {
+                    console.error('Error saving settings to Firestore:', error);
+                    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+                    return false;
+                }
+            }
+
+            async function applySettingsToUI() {
+                const settings = await getSettings();
+                if (!settings) return;
+                
+                const runningTitleEl = document.getElementById('runningTitleText');
+                if (runningTitleEl && settings.runningTitle) {
+                    runningTitleEl.textContent = settings.runningTitle;
+                }
+                
+                if (settings.defaultLang && settings.defaultLang !== currentLang) {
+                    const langBtn = document.getElementById('lang' + (settings.defaultLang === 'km' ? 'Km' : 'En'));
+                    if (langBtn) {
+                        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                        langBtn.classList.add('active');
+                        currentLang = settings.defaultLang;
+                        applyLanguage(currentLang);
+                    }
+                }
+                
+                if (settings.menuItems && settings.menuItems.length > 0) {
+                    buildMenuCheckboxes(settings.menuItems);
+                }
+            }
+
+            async function initSettings() {
+                try {
+                    const settings = await getSettings();
+                    await applySettingsToUI();
+                    console.log('Settings initialized successfully');
+                    return settings;
+                } catch (error) {
+                    console.error('Error initializing settings:', error);
+                    return DEFAULT_SETTINGS;
+                }
+            }
+
+            async function loadSettingsToForm() {
+                const settings = await getSettings();
+                document.getElementById('settingCompanyName').value = settings.companyName || '';
+                document.getElementById('settingPhone').value = settings.phone || '';
+                document.getElementById('settingAddress').value = settings.address || '';
+                document.getElementById('settingEmail').value = settings.email || '';
+                document.getElementById('settingLogo').value = settings.logo || '';
+                document.getElementById('settingRunningTitle').value = settings.runningTitle || '';
+                document.getElementById('settingPrimaryColor').value = settings.primaryColor || '#1a3a5c';
+                document.getElementById('settingSecondaryColor').value = settings.secondaryColor || '#2a5f8a';
+                document.getElementById('settingBgColor').value = settings.bgColor || '#f0f2f5';
+                document.getElementById('settingDefaultLang').value = settings.defaultLang || 'km';
+                document.getElementById('settingMenuItems').value = (settings.menuItems || []).join('\n');
+                document.getElementById('settingEventTypes').value = (settings.eventTypes || []).join('\n');
+                document.getElementById('settingBonusRate').value = settings.bonusRate || 10;
+                document.getElementById('settingExtraPrice').value = settings.extraPrice || 10;
+                document.getElementById('settingGasRate').value = settings.gasRate || 2;
+                document.getElementById('settingDiscountRate').value = settings.discountRate || 0;
+            }
+
+            async function saveSettingsFromForm() {
+                if (!isAdmin()) {
+                    showMessage('warning', 'ការព្រមាន', 'មានតែអ្នកគ្រប់គ្រងប៉ុណ្ណោះដែលអាចរក្សាទុកការកំណត់');
+                    return;
+                }
+                
+                const settings = {
+                    companyName: document.getElementById('settingCompanyName').value.trim(),
+                    phone: document.getElementById('settingPhone').value.trim(),
+                    address: document.getElementById('settingAddress').value.trim(),
+                    email: document.getElementById('settingEmail').value.trim(),
+                    logo: document.getElementById('settingLogo').value.trim(),
+                    runningTitle: document.getElementById('settingRunningTitle').value.trim(),
+                    primaryColor: document.getElementById('settingPrimaryColor').value,
+                    secondaryColor: document.getElementById('settingSecondaryColor').value,
+                    bgColor: document.getElementById('settingBgColor').value,
+                    defaultLang: document.getElementById('settingDefaultLang').value,
+                    menuItems: document.getElementById('settingMenuItems').value.split('\n').map(s => s.trim()).filter(s => s),
+                    eventTypes: document.getElementById('settingEventTypes').value.split('\n').map(s => s.trim()).filter(s => s),
+                    bonusRate: parseFloat(document.getElementById('settingBonusRate').value) || 0,
+                    extraPrice: parseFloat(document.getElementById('settingExtraPrice').value) || 0,
+                    gasRate: parseFloat(document.getElementById('settingGasRate').value) || 0,
+                    discountRate: parseFloat(document.getElementById('settingDiscountRate').value) || 0
+                };
+                
+                const saved = await saveSettings(settings);
+                
+                if (saved) {
+                    await applySettingsToUI();
+                    showMessage('success', 'ជោគជ័យ!', 'ការកំណត់ប្រព័ន្ធត្រូវបានរក្សាទុកក្នុង Firestore ដោយជោគជ័យ');
+                } else {
+                    showMessage('warning', 'ការព្រមាន', 'ការកំណត់ត្រូវបានរក្សាទុកក្នុងកុំព្យូទ័រតែប៉ុណ្ណោះ');
+                }
+            }
+
+            // ============================================================
             //  DASHBOARD
             // ============================================================
             function updateDashboard() {
@@ -3816,7 +3814,7 @@
             }
 
             // ============================================================
-            //  ANIMATION UPDATE WITH AUTO GLOW EVERY 5 SECONDS
+            //  ANIMATION UPDATE
             // ============================================================
             function updateAnimation() {
                 const dataToShow = isFiltered ? filteredData : eventsData;
@@ -3832,12 +3830,6 @@
 
                 const total = dataToShow.length || 1;
 
-                const animNumber = document.querySelectorAll('.anim-number');
-                animNumber.forEach(el => {
-                    el.classList.remove('pulse');
-                    void el.offsetWidth;
-                });
-
                 completedCount.textContent = completed;
                 pendingCount.textContent = pending;
                 cancelledCount.textContent = cancelled;
@@ -3846,40 +3838,10 @@
                 pendingBar.style.width = `${(pending / total) * 100}%`;
                 cancelledBar.style.width = `${(cancelled / total) * 100}%`;
 
-                // ===== AUTO GLOW EVERY 5 SECONDS =====
                 const animCard = document.getElementById('animationCard');
-                const animItems = document.querySelectorAll('.anim-item');
-                
                 animCard.classList.remove('auto-glow');
-                animItems.forEach(item => {
-                    item.classList.remove('auto-glow');
-                });
-                
                 void animCard.offsetWidth;
-                
                 animCard.classList.add('auto-glow');
-                animItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('auto-glow');
-                    }, index * 300);
-                });
-
-                setTimeout(() => {
-                    document.querySelectorAll('.anim-number').forEach(el => {
-                        el.classList.add('pulse');
-                    });
-                }, 100);
-
-                animItems.forEach(item => {
-                    item.classList.remove('glow');
-                    void item.offsetWidth;
-                });
-                
-                setTimeout(() => {
-                    animItems.forEach(item => {
-                        item.classList.add('glow');
-                    });
-                }, 200);
             }
 
             // ============================================================
@@ -4655,7 +4617,7 @@
             }
 
             // ============================================================
-            //  EXPORT JSON
+            //  EXPORT FUNCTIONS
             // ============================================================
             function exportJSON() {
                 const dataToExport = isFiltered ? filteredData : eventsData;
@@ -4680,13 +4642,9 @@
                 link.click();
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
-                
                 showMessage('success', LANG[currentLang].msgTitle, LANG[currentLang].msgText);
             }
 
-            // ============================================================
-            //  EXPORT FUNCTIONS
-            // ============================================================
             function printReport() { window.print(); }
 
             function exportToExcel() {
@@ -4967,130 +4925,60 @@
             });
 
             // ============================================================
-            //  SYSTEM SETTINGS / BOOT PANEL
+            //  SETTINGS MODAL - DOM and Event Listeners (FIXED)
             // ============================================================
-            const SETTINGS_KEY = 'eventSystemSettings';
-            
-            const DEFAULT_SETTINGS = {
-                companyName: 'ហេង ធារ៉ាគោដុត',
-                phone: '012 345 678',
-                address: 'ភ្នំពេញ, កម្ពុជា',
-                email: 'info@example.com',
-                logo: '',
-                runningTitle: 'ហេង ធារ៉ាគោដុត មានទទួលរៀបចំកម្មវិធីផ្សែងៗដូចជាៈ ១-ខួបកំណើត  ២-ឡើងគេហដ្ឋានថ្មី ៣-កាត់ចំណងចំណងដៃ ៤-និងកម្មវិធីជួបជុំផ្សេង!',
-                primaryColor: '#1a3a5c',
-                secondaryColor: '#2a5f8a',
-                bgColor: '#f0f2f5',
-                defaultLang: 'km',
-                menuItems: ['ជ្រក់ជើងមាន', 'មាន់ស្ពៃខៀវ', 'ស្បែកជ្រួកបំពង', 'សម្លរម្ចូរក្រាក់', 'ពោះគោទឹកប្រហុក', 'រោង', 'Sound', 'ត្រីដុតអំបិល'],
-                eventTypes: ['ខួបកំណើត', 'ឡើងគេហដ្ឋានថ្មី', 'កាត់ចំណងចំណងដៃ', 'ជួបជុំគ្រួសារ'],
-                bonusRate: 10,
-                extraPrice: 10,
-                gasRate: 2,
-                discountRate: 0
-            };
-            
-            function getSettings() {
-                try {
-                    const stored = localStorage.getItem(SETTINGS_KEY);
-                    if (stored) {
-                        const settings = JSON.parse(stored);
-                        return { ...DEFAULT_SETTINGS, ...settings };
-                    }
-                } catch (e) {}
-                return { ...DEFAULT_SETTINGS };
-            }
-            
-            function saveSettings(settings) {
-                localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-            }
-            
-            function applySettingsToUI(settings) {
-                if (!settings) settings = getSettings();
-                const runningTitleEl = document.getElementById('runningTitleText');
-                if (runningTitleEl && settings.runningTitle) {
-                    runningTitleEl.textContent = settings.runningTitle;
+            const settingsModal = document.getElementById('settingsModal');
+            const settingsBtn = document.getElementById('settingsBtn');
+            const closeSettingsBtn = document.getElementById('closeSettingsBtn');
+            const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+            const saveMenuItemsBtn = document.getElementById('saveMenuItems');
+
+            function openSettingsModal() {
+                if (!isAdmin()) {
+                    showMessage('warning', 'ការព្រមាន', 'មានតែអ្នកគ្រប់គ្រងប៉ុណ្ណោះដែលអាចចូលប្រើផ្ទាំងកំណត់ប្រព័ន្ធ');
+                    return;
                 }
-                if (settings.defaultLang && settings.defaultLang !== currentLang) {
-                    const langBtn = document.getElementById('lang' + (settings.defaultLang === 'km' ? 'Km' : 'En'));
-                    if (langBtn) {
-                        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                        langBtn.classList.add('active');
-                        currentLang = settings.defaultLang;
-                        applyLanguage(currentLang);
-                    }
+                loadSettingsToForm();
+                settingsModal.classList.add('active');
+            }
+
+            function closeSettingsModal() {
+                settingsModal.classList.remove('active');
+            }
+
+            document.querySelectorAll('.settings-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const tabName = this.dataset.tab;
+                    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+                    const panel = document.getElementById('panel-' + tabName);
+                    if (panel) panel.classList.add('active');
+                });
+            });
+
+            if (settingsBtn) settingsBtn.addEventListener('click', openSettingsModal);
+            if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', closeSettingsModal);
+            if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', saveSettingsFromForm);
+
+            if (settingsModal) {
+                settingsModal.addEventListener('click', function(e) {
+                    if (e.target === this) closeSettingsModal();
+                });
+            }
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && settingsModal && settingsModal.classList.contains('active')) {
+                    closeSettingsModal();
                 }
-            }
-            
-            function loadSettingsToForm() {
-                const settings = getSettings();
-                document.getElementById('settingCompanyName').value = settings.companyName || '';
-                document.getElementById('settingPhone').value = settings.phone || '';
-                document.getElementById('settingAddress').value = settings.address || '';
-                document.getElementById('settingEmail').value = settings.email || '';
-                document.getElementById('settingLogo').value = settings.logo || '';
-                document.getElementById('settingRunningTitle').value = settings.runningTitle || '';
-                document.getElementById('settingPrimaryColor').value = settings.primaryColor || '#1a3a5c';
-                document.getElementById('settingSecondaryColor').value = settings.secondaryColor || '#2a5f8a';
-                document.getElementById('settingBgColor').value = settings.bgColor || '#f0f2f5';
-                document.getElementById('settingDefaultLang').value = settings.defaultLang || 'km';
-                document.getElementById('settingMenuItems').value = (settings.menuItems || []).join('\n');
-                document.getElementById('settingEventTypes').value = (settings.eventTypes || []).join('\n');
-                document.getElementById('settingBonusRate').value = settings.bonusRate || 10;
-                document.getElementById('settingExtraPrice').value = settings.extraPrice || 10;
-                document.getElementById('settingGasRate').value = settings.gasRate || 2;
-                document.getElementById('settingDiscountRate').value = settings.discountRate || 0;
-            }
-            
-            function saveSettingsFromForm() {
-                const settings = {
-                    companyName: document.getElementById('settingCompanyName').value.trim(),
-                    phone: document.getElementById('settingPhone').value.trim(),
-                    address: document.getElementById('settingAddress').value.trim(),
-                    email: document.getElementById('settingEmail').value.trim(),
-                    logo: document.getElementById('settingLogo').value.trim(),
-                    runningTitle: document.getElementById('settingRunningTitle').value.trim(),
-                    primaryColor: document.getElementById('settingPrimaryColor').value,
-                    secondaryColor: document.getElementById('settingSecondaryColor').value,
-                    bgColor: document.getElementById('settingBgColor').value,
-                    defaultLang: document.getElementById('settingDefaultLang').value,
-                    menuItems: document.getElementById('settingMenuItems').value.split('\n').map(s => s.trim()).filter(s => s),
-                    eventTypes: document.getElementById('settingEventTypes').value.split('\n').map(s => s.trim()).filter(s => s),
-                    bonusRate: parseFloat(document.getElementById('settingBonusRate').value) || 0,
-                    extraPrice: parseFloat(document.getElementById('settingExtraPrice').value) || 0,
-                    gasRate: parseFloat(document.getElementById('settingGasRate').value) || 0,
-                    discountRate: parseFloat(document.getElementById('settingDiscountRate').value) || 0
-                };
-                
-                saveSettings(settings);
-                applySettingsToUI(settings);
-                
-                if (settings.menuItems && settings.menuItems.length > 0) {
-                    const grid = document.getElementById('menuCheckboxGrid');
-                    if (grid) {
-                        grid.innerHTML = '';
-                        settings.menuItems.forEach(item => {
-                            const label = document.createElement('label');
-                            const checkbox = document.createElement('input');
-                            checkbox.type = 'checkbox';
-                            checkbox.value = item;
-                            checkbox.className = 'menu-checkbox';
-                            label.appendChild(checkbox);
-                            label.appendChild(document.createTextNode(item));
-                            grid.appendChild(label);
-                        });
-                    }
-                }
-                
-                showMessage('success', 'ជោគជ័យ!', 'ការកំណត់ប្រព័ន្ធត្រូវបានរក្សាទុកដោយជោគជ័យ');
-            }
-            
-            function exportSettings() {
-                const settings = getSettings();
+            });
+
+            document.getElementById('backupSettingsBtn')?.addEventListener('click', async function() {
+                const settings = await getSettings();
                 const data = {
                     settings: settings,
                     exportedAt: new Date().toISOString(),
-                    version: '2.5'
+                    version: '3.0'
                 };
                 const json = JSON.stringify(data, null, 2);
                 const blob = new Blob([json], { type: 'application/json' });
@@ -5103,36 +4991,42 @@
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
                 showMessage('success', 'ជោគជ័យ!', 'ការកំណត់ត្រូវបានបម្រុងទុក');
-            }
-            
-            function importSettings(file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const data = JSON.parse(e.target.result);
-                        if (data.settings) {
-                            saveSettings(data.settings);
-                            loadSettingsToForm();
-                            applySettingsToUI(data.settings);
-                            showMessage('success', 'ជោគជ័យ!', 'ការកំណត់ត្រូវបានស្ដារដោយជោគជ័យ');
-                        } else {
-                            showMessage('error', 'កំហុស!', 'ទម្រង់ឯកសារមិនត្រឹមត្រូវ');
+            });
+
+            document.getElementById('restoreSettingsBtn')?.addEventListener('click', function() {
+                document.getElementById('restoreSettingsInput').click();
+            });
+            document.getElementById('restoreSettingsInput')?.addEventListener('change', function(e) {
+                if (this.files && this.files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = async function(e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            if (data.settings) {
+                                await saveSettings(data.settings);
+                                await loadSettingsToForm();
+                                await applySettingsToUI();
+                                showMessage('success', 'ជោគជ័យ!', 'ការកំណត់ត្រូវបានស្ដារដោយជោគជ័យ');
+                            } else {
+                                showMessage('error', 'កំហុស!', 'ទម្រង់ឯកសារមិនត្រឹមត្រូវ');
+                            }
+                        } catch (err) {
+                            showMessage('error', 'កំហុស!', 'មិនអាចអានឯកសារបានទេ');
                         }
-                    } catch (err) {
-                        showMessage('error', 'កំហុស!', 'មិនអាចអានឯកសារបានទេ');
-                    }
-                };
-                reader.readAsText(file);
-            }
-            
-            function exportAllData() {
-                const settings = getSettings();
+                    };
+                    reader.readAsText(this.files[0]);
+                    this.value = '';
+                }
+            });
+
+            document.getElementById('backupAllBtn')?.addEventListener('click', async function() {
+                const settings = await getSettings();
                 const allData = {
                     settings: settings,
-                    events: typeof eventsData !== 'undefined' ? eventsData : [],
+                    events: eventsData || [],
                     exportedAt: new Date().toISOString(),
-                    version: '2.5',
-                    totalEvents: typeof eventsData !== 'undefined' ? eventsData.length : 0
+                    version: '3.0',
+                    totalEvents: (eventsData || []).length
                 };
                 const json = JSON.stringify(allData, null, 2);
                 const blob = new Blob([json], { type: 'application/json' });
@@ -5145,128 +5039,86 @@
                 document.body.removeChild(link);
                 URL.revokeObjectURL(url);
                 showMessage('success', 'ជោគជ័យ!', 'ទិន្នន័យទាំងអស់ត្រូវបានបម្រុងទុក');
-            }
-            
-            function importAllData(file) {
-                const reader = new FileReader();
-                reader.onload = async function(e) {
-                    try {
-                        const data = JSON.parse(e.target.result);
-                        if (data.settings) {
-                            saveSettings(data.settings);
-                            loadSettingsToForm();
-                            applySettingsToUI(data.settings);
-                        }
-                        if (data.events && data.events.length > 0) {
-                            eventsData = data.events;
-                            sortDataByDate(eventsData);
-                            await saveToFirestore(eventsData);
-                            if (dateFilterValue) applyDateFilter(dateFilterValue);
-                            else applyFilter();
-                            renderCustomCalendar(currentDate.getFullYear(), currentDate.getMonth(), dateFilterValue || '');
-                            updateDashboard();
-                            updateAnimation();
-                        }
-                        showMessage('success', 'ជោគជ័យ!', 'ទិន្នន័យទាំងអស់ត្រូវបានស្ដារដោយជោគជ័យ');
-                    } catch (err) {
-                        showMessage('error', 'កំហុស!', 'មិនអាចអានឯកសារបានទេ');
-                    }
-                };
-                reader.readAsText(file);
-            }
+            });
 
-            // ============================================================
-            //  SETTINGS MODAL - DOM and Event Listeners
-            // ============================================================
-            const settingsModal = document.getElementById('settingsModal');
-            const settingsBtn = document.getElementById('settingsBtn');
-            const closeSettingsBtn = document.getElementById('closeSettingsBtn');
-            const saveSettingsBtn = document.getElementById('saveSettingsBtn');
-            
-            function openSettingsModal() {
-                if (!isAdmin()) {
-                    showMessage('warning', 'ការព្រមាន', 'មានតែអ្នកគ្រប់គ្រងប៉ុណ្ណោះដែលអាចចូលប្រើផ្ទាំងកំណត់ប្រព័ន្ធ');
-                    return;
-                }
-                loadSettingsToForm();
-                settingsModal.classList.add('active');
-            }
-            
-            function closeSettingsModal() {
-                settingsModal.classList.remove('active');
-            }
-            
-            document.querySelectorAll('.settings-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    const tabName = this.dataset.tab;
-                    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
-                    const panel = document.getElementById('panel-' + tabName);
-                    if (panel) panel.classList.add('active');
-                });
-            });
-            
-            if (settingsBtn) settingsBtn.addEventListener('click', openSettingsModal);
-            if (closeSettingsBtn) closeSettingsBtn.addEventListener('click', closeSettingsModal);
-            if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', saveSettingsFromForm);
-            
-            if (settingsModal) {
-                settingsModal.addEventListener('click', function(e) {
-                    if (e.target === this) closeSettingsModal();
-                });
-            }
-            
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && settingsModal && settingsModal.classList.contains('active')) {
-                    closeSettingsModal();
-                }
-            });
-            
-            document.getElementById('backupSettingsBtn')?.addEventListener('click', exportSettings);
-            document.getElementById('restoreSettingsBtn')?.addEventListener('click', function() {
-                document.getElementById('restoreSettingsInput').click();
-            });
-            document.getElementById('restoreSettingsInput')?.addEventListener('change', function(e) {
-                if (this.files && this.files.length > 0) {
-                    importSettings(this.files[0]);
-                    this.value = '';
-                }
-            });
-            
-            document.getElementById('backupAllBtn')?.addEventListener('click', exportAllData);
             document.getElementById('restoreAllBtn')?.addEventListener('click', function() {
                 document.getElementById('restoreAllInput').click();
             });
             document.getElementById('restoreAllInput')?.addEventListener('change', function(e) {
                 if (this.files && this.files.length > 0) {
-                    importAllData(this.files[0]);
+                    const reader = new FileReader();
+                    reader.onload = async function(e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            if (data.settings) {
+                                await saveSettings(data.settings);
+                                await loadSettingsToForm();
+                                await applySettingsToUI();
+                            }
+                            if (data.events && data.events.length > 0) {
+                                eventsData = data.events;
+                                sortDataByDate(eventsData);
+                                await saveToFirestore(eventsData);
+                                if (dateFilterValue) applyDateFilter(dateFilterValue);
+                                else applyFilter();
+                                renderCustomCalendar(currentDate.getFullYear(), currentDate.getMonth(), dateFilterValue || '');
+                                updateDashboard();
+                                updateAnimation();
+                            }
+                            showMessage('success', 'ជោគជ័យ!', 'ទិន្នន័យទាំងអស់ត្រូវបានស្ដារដោយជោគជ័យ');
+                        } catch (err) {
+                            showMessage('error', 'កំហុស!', 'មិនអាចអានឯកសារបានទេ');
+                        }
+                    };
+                    reader.readAsText(this.files[0]);
                     this.value = '';
                 }
             });
-            
-            document.getElementById('saveMenuItems')?.addEventListener('click', function() {
-                const items = document.getElementById('settingMenuItems').value.split('\n').map(s => s.trim()).filter(s => s);
-                const settings = getSettings();
-                settings.menuItems = items;
-                saveSettings(settings);
-                
-                const grid = document.getElementById('menuCheckboxGrid');
-                if (grid) {
-                    grid.innerHTML = '';
-                    items.forEach(item => {
-                        const label = document.createElement('label');
-                        const checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.value = item;
-                        checkbox.className = 'menu-checkbox';
-                        label.appendChild(checkbox);
-                        label.appendChild(document.createTextNode(item));
-                        grid.appendChild(label);
-                    });
-                }
-                showMessage('success', 'ជោគជ័យ!', 'បញ្ជីមុខម្ហូបត្រូវបានធ្វើបច្ចុប្បន្នភាព');
-            });
+
+            // ===== SAVE MENU ITEMS - FIXED VERSION =====
+            if (saveMenuItemsBtn) {
+                saveMenuItemsBtn.addEventListener('click', async function() {
+                    if (!isAdmin()) {
+                        showMessage('warning', 'ការព្រមាន', 'មានតែអ្នកគ្រប់គ្រងប៉ុណ្ណោះដែលអាចកែប្រែបញ្ជីមុខម្ហូប');
+                        return;
+                    }
+                    
+                    const items = document.getElementById('settingMenuItems').value
+                        .split('\n')
+                        .map(s => s.trim())
+                        .filter(s => s);
+                    
+                    if (items.length === 0) {
+                        showMessage('warning', 'ការព្រមាន', 'សូមបញ្ចូលមុខម្ហូបយ៉ាងតិច ១ មុខ');
+                        return;
+                    }
+                    
+                    try {
+                        const originalText = saveMenuItemsBtn.innerHTML;
+                        saveMenuItemsBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> កំពុងរក្សាទុក...';
+                        saveMenuItemsBtn.disabled = true;
+                        
+                        const currentSettings = await getSettings();
+                        currentSettings.menuItems = items;
+                        const saved = await saveSettings(currentSettings);
+                        
+                        if (saved) {
+                            buildMenuCheckboxes(items);
+                            showMessage('success', 'ជោគជ័យ!', 'បញ្ជីមុខម្ហូបត្រូវបានរក្សាទុកក្នុង Firestore ដោយជោគជ័យ');
+                        } else {
+                            showMessage('error', 'កំហុស!', 'មិនអាចរក្សាទុកបញ្ជីមុខម្ហូបបានទេ');
+                        }
+                        
+                        saveMenuItemsBtn.innerHTML = originalText;
+                        saveMenuItemsBtn.disabled = false;
+                    } catch (error) {
+                        console.error('Error saving menu items:', error);
+                        showMessage('error', 'កំហុស!', 'មានបញ្ហាក្នុងការរក្សាទុកទិន្នន័យ');
+                        saveMenuItemsBtn.innerHTML = '<i class="fas fa-save"></i> រក្សាបញ្ជីមុខម្ហូប';
+                        saveMenuItemsBtn.disabled = false;
+                    }
+                });
+            }
 
             // ============================================================
             //  INIT APP
@@ -5277,6 +5129,8 @@
                 currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
                 selectedDate = new Date();
                 clearAllFormFields();
+
+                await initSettings();
 
                 if (!hasData || eventsData.length === 0) {
                     eventsData = [
@@ -5349,17 +5203,6 @@
                     ];
                     sortDataByDate(eventsData);
                     await saveToFirestore(eventsData);
-                }
-
-                // Apply saved settings
-                const settings = getSettings();
-                applySettingsToUI(settings);
-                
-                // Build menu from settings
-                if (settings.menuItems && settings.menuItems.length > 0) {
-                    buildMenuCheckboxes(settings.menuItems);
-                } else {
-                    buildMenuCheckboxes(MENU_ITEMS);
                 }
 
                 filterStartDate.value = '';
