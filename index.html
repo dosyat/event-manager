@@ -5066,9 +5066,6 @@
                 applySettingsToUI(settings);
                 
                 if (settings.menuItems && settings.menuItems.length > 0) {
-                    if (typeof window.MENU_ITEMS !== 'undefined') {
-                        window.MENU_ITEMS = settings.menuItems;
-                    }
                     const grid = document.getElementById('menuCheckboxGrid');
                     if (grid) {
                         grid.innerHTML = '';
